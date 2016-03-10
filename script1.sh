@@ -3,7 +3,7 @@
 check_exist () {
 local uri=$1
 echo "in function uri =$uri "
-[[ uri =~ \.debian\.org ]]&& [ $( grep "$uri" /etc/apt/sources.list >/dev/null ) ] && echo "this repository ( $uri) - valid" && return 0
+[[ $uri =~ \.debian\.org ]] && [ ! $( grep "$uri" /etc/apt/sources.list >/dev/null ) ] && echo "this repository ( $uri) - valid" && return 0
 echo "this repository already exists"
 return 1
 }
