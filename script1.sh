@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 usage="example of usage  script.sh (add-rep|pick|) (stable|testing|unstable) URI (main|contrib|non-free)"
 
 
