@@ -2,7 +2,7 @@
 
 
 add_rep_usage="script.sh add-rep (stable|testing|unstable) URI "
-pin_usage="script.sh pin URI 'name_package'(mya content globbing)"
+pin_usage="script.sh pin 'name_package'(mya content globbing) repository"
 
 
 no_rep_exist () {
@@ -64,8 +64,8 @@ case $1 in
 			echo "creating /etc/apt/preferences.back"
 			cp /etc/apt/preferences /etc/apt/preferences.back
 		fi
-		
-		printf "Package: %s \nPin origin \"%s\"\nPin-Priority: 1001\n\n" $3 "$2" >> /etc/apt/preferences
+		[ $# -le 1 ] && exit 1	
+		printf "Package: %s \nPin: release a=%s\nPin-Priority: 1001\n\n" $2 $3 >> /etc/apt/preferences
 		 ;;
 	      *) echo "varient of usage"
 		 echo $add_rep_usage
